@@ -1,0 +1,77 @@
+===============================
+ Weather Service - How to Run
+===============================
+
+This project is a FastAPI backend that fetches weather data from the Open-Meteo API,
+stores it in SQLite, and exports to Excel and PDF.
+
+--------------------------------
+1. Prerequisites
+--------------------------------
+- Python 3.9 or higher
+- (Optional) Docker installed
+
+--------------------------------
+2. Run Locally (Without Git)
+--------------------------------
+Step 1: Extract the project folder
+--------------------------------
+Unzip the provided "weather-service.zip" file.
+Open a terminal (Command Prompt or PowerShell) inside the "weather-service" folder.
+
+Step 2: Create virtual environment
+--------------------------------
+python -m venv venv
+venv\Scripts\activate       (on Windows)
+source venv/bin/activate    (on Mac/Linux)
+
+Step 3: Install dependencies
+--------------------------------
+pip install -r requirements.txt
+
+Step 4: Start server
+--------------------------------
+uvicorn app:app --reload
+
+Server runs at:
+http://127.0.0.1:8000
+
+--------------------------------
+3. API Endpoints
+--------------------------------
+Fetch & store weather data:
+GET /weather-report?lat=47.37&lon=8.55
+Example: http://127.0.0.1:8000/weather-report?lat=47.37&lon=8.55
+
+Export last 48h data as Excel:
+GET /export/excel
+(downloads weather_data.xlsx)
+
+Export last 48h data as PDF:
+GET /export/pdf
+(downloads weather_report.pdf)
+
+Interactive API Docs:
+http://127.0.0.1:8000/docs
+
+--------------------------------
+4. Run with Docker (Optional)
+--------------------------------
+Step 1: Build Docker image
+docker build -t weather-service .
+
+Step 2: Run Docker container
+docker run -p 8000:8000 weather-service
+
+Now access the API at:
+http://localhost:8000/docs
+
+--------------------------------
+5. Outputs
+--------------------------------
+- weather_data.xlsx → Excel file with 48h weather data
+- weather_report.pdf → PDF with line chart of Temperature & Humidity
+
+===============================
+ End of Instructions
+===============================
